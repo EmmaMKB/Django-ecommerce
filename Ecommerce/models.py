@@ -5,7 +5,7 @@ import uuid
 
 class Basket(models.Model):
     uid = models.CharField(unique=True, max_length=255, blank=True, null=True, default=uuid.uuid4)
-    user = models.CharField(max_length=256, blank=True, null=True)
+    user = models.ForeignKey('User', models.CASCADE, db_column='user', blank=True, null=True)
     created_at = models.DateTimeField(blank=True, null=True, default=timezone.now)
     is_ordered = models.BooleanField(blank=True, null=True, default=False)
 
@@ -69,6 +69,7 @@ class ProductToBasket(models.Model):
 
     uid = models.CharField(max_length=255, blank=True, null=True, default=uuid.uuid4)
     product = models.ForeignKey(Product, models.DO_NOTHING, db_column='product', blank=True, null=True)
+    user = models.ForeignKey('User', models.CASCADE, db_column='user', blank=True, null=True)
     basket = models.ForeignKey(Basket, models.DO_NOTHING, db_column='basket', blank=True, null=True)
     qty = models.IntegerField(blank=True, null=True)
     is_valid = models.BooleanField(blank=True, null=True, default=True)
@@ -103,3 +104,14 @@ class User(models.Model):
 
     class Meta:
         db_table = 'user'
+
+
+class Wishlist(models.Model):
+    uid = models.CharField(max_length=255, blank=True, null=True, default=uuid.uuid4)
+    product = models.ForeignKey(Product, models.DO_NOTHING, db_column='product', blank=True, null=True)
+    user = models.ForeignKey('User', models.CASCADE, db_column='user', blank=True, null=True)
+    created_at = models.DateTimeField(blank=True, null=True, default=timezone.now)
+    is_active = models.IntegerField(blank=True, null=True, default=True)
+
+    class Meta:
+        db_table = 'wishlist'
