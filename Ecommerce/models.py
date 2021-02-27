@@ -4,6 +4,16 @@ import uuid
 # Create your models here.
 
 
+class Basket(models.Model):
+    uid = models.CharField(unique=True, max_length=255, blank=True, null=True, default=uuid.uuid4)
+    user = models.CharField(max_length=256, blank=True, null=True)
+    created_at = models.DateTimeField(blank=True, null=True, default=timezone.now)
+    is_ordered = models.BooleanField(blank=True, null=True, default=False)
+
+    class Meta:
+        db_table = 'basket'
+
+
 class Category(models.Model):
     uid = models.CharField(unique=True, max_length=255, blank=True, null=True, default=uuid.uuid4)
     name = models.CharField(max_length=256, blank=True, null=True)
@@ -29,6 +39,7 @@ class Product(models.Model):
 
     class Meta:
         db_table = 'product'
+
 
 class Subcategory(models.Model):
     uid = models.CharField(unique=True, max_length=255, blank=True, null=True, default=uuid.uuid4)
