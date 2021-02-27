@@ -41,6 +41,20 @@ class Product(models.Model):
         db_table = 'product'
 
 
+class ProductToBasket(models.Model):
+
+    uid = models.CharField(max_length=255, blank=True, null=True, default=uuid.uuid4)
+    product = models.ForeignKey(Product, models.DO_NOTHING, db_column='product', blank=True, null=True)
+    basket = models.ForeignKey(Basket, models.DO_NOTHING, db_column='basket', blank=True, null=True)
+    qty = models.IntegerField(blank=True, null=True)
+    is_valid = models.BooleanField(blank=True, null=True, default=True)
+    added_at = models.DateTimeField(blank=True, null=True, default=timezone.now)
+
+    class Meta:
+        db_table = 'product_to_basket'
+
+
+
 class Subcategory(models.Model):
     uid = models.CharField(unique=True, max_length=255, blank=True, null=True, default=uuid.uuid4)
     name = models.CharField(max_length=128, blank=True, null=True)
