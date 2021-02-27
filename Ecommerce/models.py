@@ -1,7 +1,6 @@
 from django.db import models
 from django.utils import timezone
 import uuid
-# Create your models here.
 
 
 class Basket(models.Model):
@@ -23,6 +22,16 @@ class Category(models.Model):
 
     class Meta:
         db_table = 'category'
+
+
+class Newsletter(models.Model):
+    uid = models.CharField(max_length=255, blank=True, null=True, default=uuid.uuid4)
+    email = models.CharField(max_length=256, blank=True, null=True)
+    registered_at = models.DateTimeField(blank=True, null=True, default=timezone.now)
+    is_active = models.BooleanField(blank=True, null=True, default=True)
+
+    class Meta:
+        db_table = 'newsletter'
 
 
 class Order(models.Model):
