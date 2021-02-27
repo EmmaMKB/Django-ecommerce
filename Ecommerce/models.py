@@ -25,6 +25,21 @@ class Category(models.Model):
         db_table = 'category'
 
 
+class Order(models.Model):
+    uid = models.CharField(max_length=255, blank=True, null=True, default=uuid.uuid4)
+    reference_code = models.CharField(max_length=256, blank=True, null=True)
+    user = models.CharField(max_length=256, blank=True, null=True)
+    created_at = models.DateTimeField(blank=True, null=True, default=timezone.now)
+    state = models.CharField(max_length=128, blank=True, null=True)
+    payment_method = models.CharField(max_length=128, blank=False, null=False, default="")
+    total = models.FloatField(blank=True, null=True)
+    basket = models.ForeignKey(Basket, models.DO_NOTHING, db_column='basket', blank=True, null=True)
+    shipping_details = models.TextField(blank=True, null=True)
+
+    class Meta:
+        db_table = 'order'
+
+
 class Product(models.Model):
     uid = models.CharField(unique=True, max_length=255, blank=True, null=True, default=uuid.uuid4)
     name = models.CharField(max_length=256, blank=True, null=True)
@@ -52,7 +67,6 @@ class ProductToBasket(models.Model):
 
     class Meta:
         db_table = 'product_to_basket'
-
 
 
 class Subcategory(models.Model):
