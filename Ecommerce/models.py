@@ -20,6 +20,9 @@ class Category(models.Model):
     image = models.FileField(upload_to='categories/%Y/%m/%d/', default=None)
     created_at = models.DateTimeField(default=timezone.now)
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         db_table = 'category'
 
@@ -61,6 +64,9 @@ class Product(models.Model):
     subcategory = models.ForeignKey('Subcategory', models.DO_NOTHING, db_column='subcategory', blank=True, null=True)
     created_at = models.DateTimeField(default=timezone.now)
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         db_table = 'product'
 
@@ -86,6 +92,9 @@ class Subcategory(models.Model):
     image = models.FileField(upload_to='sub_categories/%Y/%m/%d/', default=None)
     category = models.ForeignKey(Category, models.CASCADE, db_column='category', blank=True, null=True)
     created_at = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         db_table = 'subcategory'
