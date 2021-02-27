@@ -4,6 +4,17 @@ import uuid
 # Create your models here.
 
 
+class Category(models.Model):
+    uid = models.CharField(unique=True, max_length=255, blank=True, null=True, default=uuid.uuid4)
+    name = models.CharField(max_length=256, blank=True, null=True)
+    description = models.CharField(max_length=512, blank=True, null=True)
+    image = models.FileField(upload_to='categories/%Y/%m/%d/', default=None)
+    created_at = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        db_table = 'category'
+
+
 class User(models.Model):
 
     uid = models.CharField(unique=True, max_length=255, blank=True, null=True, default=uuid.uuid4)
