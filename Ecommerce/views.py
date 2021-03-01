@@ -15,3 +15,8 @@ def index(request):
             'subcategories': subcategories,
             'last_products': last_products
         })
+
+
+def register(request):
+
+    return render(request, 'auth/register.html')
