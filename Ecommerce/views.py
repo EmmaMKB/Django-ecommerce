@@ -20,3 +20,15 @@ def index(request):
 def register(request):
 
     return render(request, 'auth/register.html')
+
+
+def product_details(request, uid):
+    try:
+        product = ProductDao.get_product(uid)
+    except:
+        product = None
+
+    return render(request, 'product/product.details.html', {
+        'product': product,
+        'product_exists': product != None,
+    })
