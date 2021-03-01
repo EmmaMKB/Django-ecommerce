@@ -1,0 +1,68 @@
+{% extends 'auth.layout.html' %}
+
+{% block header %}
+<div class="breadcrumb-contentnhy">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <h2 class="hny-title text-center">Bienvenue</h2>
+            <ol class="breadcrumb mb-0">
+              <p style="color: #ffffff">Créez un compte sur notre plateforme</p>
+            </ol>
+        </nav>
+    </div>
+</div>
+{% endblock %}
+{% block content %}
+<section class="w3l-contacts-8">
+    <div class="contacts-9 section-gap py-5">
+      <div class="container py-lg-5">
+        <div class="row register-card">
+          <div class="col-lg-8 form">
+            <div class="cont-details">
+                <h3 class="hny-title mb-0">Créer votre <span>compte</span></h3>
+                <p class="mb-5">Remplissez vos informations</p>
+                <form action="">
+                    <div class="row">
+                        <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <input type="text" required name="name" class="form-control" placeholder="Votre nom">
+                        </div>
+                        <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <input type="text" required name="firstname" class="form-control" placeholder="Votre prenom">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <input type="email" required name="email" class="form-control" placeholder="ex : johndoe@example.com">
+                        </div>
+                        <div class="input-group mb-3 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                             <div class="input-group-prepend">
+                                 <span class="input-group-text" id="basic-addon1">+243</span>
+                             </div>
+                            <input type="tel" required name="phone" class="form-control" placeholder="ex : 97XXXXXXX">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" required name="password" class="form-control" placeholder="Mot de passe">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" required name="passwordconf" class="form-control" placeholder="Confirmer le mot de passe">
+                    </div>
+                    <button type="submit" class="btn btn-block">Enregistrer</button>
+                </form>
+            </div>
+          </div>
+          <div class="col-lg-4 contact">
+              <div class="cont-details">
+              <h3 class="mb-0">Nous <span>contacter</span></h3>
+              <p class="mb-5">We're ready to lead you into the future with Business Services</p>
+              <p class="margin-top"><span class="texthny">Appelez-nous : </span> <a href="tel:+(21) 255 999 8899">+(243)
+                  975 999 8899</a></p>
+              <p> <span class="texthny">Email : </span> <a href="mailto:info@example.com">
+                  info@example.com</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+{% endblock %}
