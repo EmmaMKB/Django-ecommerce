@@ -1,0 +1,26 @@
+.register-card{
+    box-shadow: 0px 0px 29px rgba(74, 73, 73, 0.36);
+}
+.register-card > * {
+    padding: 20px;
+}
+.register-card > .form {
+    color: #ffffff;
+}
+.register-card > .contact h3 {
+    color: #ffffff;
+    text-transform: uppercase;
+}
+.register-card > .contact h3 span {
+    color: #ff7315;
+}
+
+.register-card > .contact p a {
+    color: #ffffff;
+}
+
+.register-card > .contact {
+    background: linear-gradient(to bottom, rgb(60, 3, 28, 0.93), rgba(117, 19, 93, 0.83)), url(../images/banner4.jpg) no-repeat center;
+    overflow: hidden;
+    color: #fff !important;
+}

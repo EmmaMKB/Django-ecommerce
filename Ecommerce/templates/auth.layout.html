@@ -6,6 +6,7 @@
       <title>Django Ecommerce</title>
         {% load static %}
       <link rel="stylesheet" href="{% static 'css/style-starter.css' %}">
+      <link rel="stylesheet" href="{% static 'css/custom.css' %}">
       <link href="//fonts.googleapis.com/css?family=Oswald:300,400,500,600&display=swap" rel="stylesheet">
       <link href="//fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,900&display=swap" rel="stylesheet">
     </head>
@@ -242,12 +243,6 @@
 			$(".button-log a").toggleClass('btn-open').toggleClass('btn-close');
 			open = false;
 		});
-  </script>
-<script>
-// optional
-		$('#customerhnyCarousel').carousel({
-				interval: 5000
-    });
   </script>
  <script src="{% static 'js/minicart.js' %}"></script>
  <script>
