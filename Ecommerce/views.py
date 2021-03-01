@@ -1,14 +1,17 @@
 from django.shortcuts import render
-from Ecommerce.dao import subcategory
+from Ecommerce.dao import subcategory, product
 
 SubcategoryDao = subcategory.SubCategoryDao()
+ProductDao = product.ProductDao()
 
 
 def index(request):
     
     subcategories = SubcategoryDao.get_all()
+    last_products = ProductDao.get_lasts()
     return render(
         request, 
         'index.html', {
-            'subcategories': subcategories
+            'subcategories': subcategories,
+            'last_products': last_products
         })
