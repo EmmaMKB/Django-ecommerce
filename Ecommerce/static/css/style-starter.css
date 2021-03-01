@@ -7258,7 +7258,7 @@ iframe {
 }
 
 .w3l-banner-slider-main.inner-pagehny .breadcrumb-infhny {
-  background: url(../images/bg1.jpg) no-repeat center;
+  background: linear-gradient(to bottom, rgb(60, 3, 28, 0.53), rgba(117, 19, 93, 0.73)), url(../images/bg1.jpg) no-repeat center;
   background-size: cover;
   -webkit-background-size: cover;
   -o-background-size: cover;
