@@ -54,6 +54,7 @@ class Order(models.Model):
 
 class Product(models.Model):
     uid = models.CharField(unique=True, max_length=255, blank=True, null=True, default=uuid.uuid4)
+    banner = models.FileField(upload_to='banner/%Y/%m/%d/', default=None)
     name = models.CharField(max_length=256, blank=True, null=True)
     description = models.CharField(max_length=2048, blank=True, null=True)
     tags = models.CharField(max_length=512, blank=True, null=True)
@@ -66,6 +67,10 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+    @property
+    def tags_list(self):
+        return self.tags.split(",")
 
     class Meta:
         db_table = 'product'
