@@ -1,0 +1,48 @@
+{% extends 'auth.layout.html' %}
+{% load static %}
+
+{% block header %}
+<div class="breadcrumb-contentnhy">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            {% if product_exists %}
+                <h2 class="hny-title text-center">Pochette iPhone 11 Cuir</h2>
+                <ol class="breadcrumb mb-0">
+                  <p style="color: #ffffff">Decouvrez ce produit</p>
+                </ol>
+            {% endif %}
+            {% if not product_exists %}
+                <h2 class="hny-title text-center">Ce produit n'existe pas</h2>
+            {% endif %}
+        </nav>
+    </div>
+</div>
+{% endblock %}
+{% block content %}
+    {% if product_exists %}
+        <section class="w3l-content-w-photo-6">
+    <div class="content-photo-6-mian py-5">
+        <div class="container py-lg-5 product-details">
+            <div class="align-photo-6-inf-cols row">
+                <div class="photo-6-inf-right col-lg-6">
+                    <h3 class="hny-title text-left" style="margin-bottom: 0">{{ product.name }}</h3>
+                    <h3 class="hny-title text-left" style="margin-top: 0 !important;"><span>$ {{ product.price }}</span></h3>
+                    <p>{{ product.description }}</p>
+                    <div>
+                        {% for tag in product.tags_list %}
+                            <a href="#"><span class="badge badge-secondary">{{ tag }}</span></a>
+                        {% endfor %}
+                    </div>
+                    <a href="#" class="read-more btn">
+                            Ajouter à la carte
+                    </a>
+                </div>
+                <div class="photo-6-inf-left col-lg-6">
+                    <img src="media/{{ product.image }}" class="img-fluid" alt="{{ product.name }}">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    {% endif %}
+{% endblock %}
