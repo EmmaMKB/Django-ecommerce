@@ -1,5 +1,3 @@
-from pprint import pprint
-
 from django import forms
 from .models import Person
 from django.forms import ModelForm
@@ -18,12 +16,16 @@ class RegisterForm(ModelForm):
         cleaned_data = self.cleaned_data
         password_1 = cleaned_data.get("password")
         password_2 = cleaned_data.get("password2")
+        user_email = cleaned_data.get("email")
 
         if password_1 != password_2:
             raise ValidationError("Mots de passe differents")
         else:
             if len(password_1) < 8:
                 raise ValidationError("Mot de passe trop court, 8 caracteres au minimum")
+        email_used = len(Person.objects.filter(email=user_email)) > 0
+        if email_used:
+            raise ValidationError("Adresse mail déjà utilisée")
 
     class Meta:
         model = Person
