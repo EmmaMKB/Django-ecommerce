@@ -26,7 +26,7 @@ SECRET_KEY = 'hhzpr#6w-8dp7n(z$9$j*vh17o3i61@4kq@(*2rgn#xnacejr_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.225.160', '127.0.0.1']
 
 
 # Application definition
@@ -70,6 +70,10 @@ TEMPLATES = [
     },
 ]
 
+TEMPLATE_CONTEXT_PROCESSORS = [
+    'django.template.context_processors.media',
+]
+
 WSGI_APPLICATION = 'Ecom.wsgi.application'
 
 
@@ -105,8 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
-
+AUTH_USER_MODEL = "Ecommerce.Person"
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
