@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from Ecommerce.dao import subcategory, product
+from .forms import RegisterForm
+from pprint import pprint
 
 SubcategoryDao = subcategory.SubCategoryDao()
 ProductDao = product.ProductDao()
@@ -18,8 +20,16 @@ def index(request):
 
 
 def register(request):
-
-    return render(request, 'auth/register.html')
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            pprint(user)
+        else:
+            render(request, 'auth/register.html', {'form': form})
+    else:
+        form = RegisterForm()
+    return render(request, 'auth/register.html', {'form': form})
 
 
 def product_details(request, uid):
