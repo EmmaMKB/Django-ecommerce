@@ -1,8 +1,4 @@
-from pprint import pprint
-
 from django.shortcuts import render, redirect
-from django.urls import reverse
-
 from Ecommerce.dao import subcategory, product
 from .forms import RegisterForm, LoginForm
 from .models import Person
@@ -65,6 +61,11 @@ def sign_in(request):
             else:
                 return render(request, 'index.html', {'login_error': True})
 
+    return redirect("home")
+
+
+def logout_user(request):
+    logout(request)
     return redirect("home")
 
 
