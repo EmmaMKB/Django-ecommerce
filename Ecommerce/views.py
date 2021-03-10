@@ -1,9 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from Ecommerce.dao import subcategory, product
 from .forms import RegisterForm
-from pprint import pprint
 from .models import Person
 from django.contrib.auth.hashers import PBKDF2PasswordHasher
+from django.contrib.auth import authenticate, login, logout
 
 SubcategoryDao = subcategory.SubCategoryDao()
 ProductDao = product.ProductDao()
@@ -27,7 +27,8 @@ def register(request):
         if form.is_valid():
             hasher = PBKDF2PasswordHasher()
             salt = hasher.salt()
-            password = hasher.encode(form.cleaned_data.get('email'), salt)
+            password = hasher.encode(form.cleaned_data.get('password'), salt)
+            email = form.cleaned_data.get('email')
             user = Person()
             user.email = form.cleaned_data.get('email')
             user.password = password
@@ -35,6 +36,11 @@ def register(request):
             user.last_name = form.cleaned_data.get('last_name')
             user.phone = form.cleaned_data.get('phone')
             user.save()
+            user = authenticate(request, username=email, password=form.cleaned_data.get('password'))
+            if user is not None:
+                login(request, user)
+                return redirect("home")
+
         else:
             render(request, 'auth/register.html', {'form': form})
     else:

@@ -27,6 +27,7 @@ class Category(models.Model):
 
     class Meta:
         db_table = 'category'
+        verbose_name_plural = 'Categories'
 
 
 class Newsletter(models.Model):
@@ -105,6 +106,7 @@ class Subcategory(models.Model):
 
     class Meta:
         db_table = 'subcategory'
+        verbose_name_plural = 'Subcategories'
 
 
 class Person(AbstractUser):
