@@ -119,6 +119,9 @@ class Person(AbstractUser):
 
     objects = CustomUserManager()
 
+    class Meta:
+        db_table = "users"
+
 
 class Wishlist(models.Model):
     uid = models.CharField(max_length=255, blank=True, null=True, default=uuid.uuid4)
