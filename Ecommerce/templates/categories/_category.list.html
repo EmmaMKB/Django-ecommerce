@@ -2,7 +2,7 @@
     <h4>Toutes les catégories</h4>
     <div class="list-group subcategories">
         {% for sub in subcategories %}
-            <a href="#" class="list-group-item list-group-item-action"><img src="http://127.0.0.1:8000/media//{{ sub.image }}" class="img-fluid img-circle" alt="">{{ sub.name }}</a>
+            <a href="{% url 'product.category' sub.uid %}" class="list-group-item list-group-item-action"><img src="http://127.0.0.1:8000/media//{{ sub.image }}" class="img-fluid img-circle" alt="">{{ sub.name }}</a>
         {% endfor %}
     </div>
 </div>

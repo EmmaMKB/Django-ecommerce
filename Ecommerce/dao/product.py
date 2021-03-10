@@ -16,3 +16,8 @@ class ProductDao:
     def get_product(uid):
 
         return Product.objects.filter(uid=uid)[:1][0]
+
+    @staticmethod
+    def get_by_subcategory(uid):
+
+        return Product.objects.filter(subcategory__uid=uid)

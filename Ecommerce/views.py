@@ -75,6 +75,12 @@ def products(request):
     return render(request, "product/index.html", {'subcategories': subcategories, 'products': products})
 
 
+def products_by_category(request, uid):
+    subcategories = SubcategoryDao.get_all()
+    products = ProductDao.get_by_subcategory(uid)
+    return render(request, "product/index.html", {'subcategories': subcategories, 'products': products})
+
+
 def product_details(request, uid):
     try:
         product = ProductDao.get_product(uid)
