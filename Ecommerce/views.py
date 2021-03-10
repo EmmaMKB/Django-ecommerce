@@ -70,7 +70,9 @@ def logout_user(request):
 
 
 def products(request):
-    return render(request, "product/index.html")
+    subcategories = SubcategoryDao.get_all()
+    products = ProductDao.get_all()
+    return render(request, "product/index.html", {'subcategories': subcategories, 'products': products})
 
 
 def product_details(request, uid):
