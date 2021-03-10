@@ -69,6 +69,10 @@ def logout_user(request):
     return redirect("home")
 
 
+def products(request):
+    return render(request, "product/index.html")
+
+
 def product_details(request, uid):
     try:
         product = ProductDao.get_product(uid)
