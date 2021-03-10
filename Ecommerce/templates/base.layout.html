@@ -6,6 +6,7 @@
       <title>Django Ecommerce</title>
         {% load static %}
       <link rel="stylesheet" href="{% static 'css/style-starter.css' %}">
+      <link rel="stylesheet" href="{% static 'css/custom.css' %}">
       <link href="//fonts.googleapis.com/css?family=Oswald:300,400,500,600&display=swap" rel="stylesheet">
       <link href="//fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,900&display=swap" rel="stylesheet">
     </head>
@@ -47,6 +48,7 @@
 							<i class="fa fa-times" aria-hidden="true"></i>
 						</button>
 						<div class="wrap">
+                            {% if not user.is_authenticated %}
 							<h5 class="text-center mb-4">Se connecter</h5>
 							<div class="login-bghny p-md-5 p-4 mx-auto mw-100">
 								<form action="{% url 'login_action' %}" method="post">
@@ -78,6 +80,18 @@
                                     </div>
 								</form>
 							</div>
+                            {% else %}
+                                <div class="user-info">
+                                    <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+                                    <p>{{ user.email }}</p>
+                                </div>
+                                <div class="list-group">
+                                    <a href="#" class="list-group-item list-group-item-action">Mes commandes</a>
+                                    <a href="#" class="list-group-item list-group-item-action">Ma wishlist</a>
+                                    <a href="#" class="list-group-item list-group-item-action">Mon profil</a>
+                                    <a href="#" class="list-group-item list-group-item-action">Deconnexion</a>
+                                </div>
+                            {% endif %}
 						</div>
 					</div>
 				</div>

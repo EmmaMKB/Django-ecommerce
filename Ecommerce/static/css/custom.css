@@ -31,3 +31,11 @@
 /*
 ---- REGISTER FORM
 */
+
+div.user-info > h1 {
+    color: #FFFFFF;
+}
+
+div.user-info > p {
+    color: #c1c1c1;
+}
