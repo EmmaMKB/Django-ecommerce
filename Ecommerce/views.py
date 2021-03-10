@@ -1,6 +1,10 @@
+from pprint import pprint
+
 from django.shortcuts import render, redirect
+from django.urls import reverse
+
 from Ecommerce.dao import subcategory, product
-from .forms import RegisterForm
+from .forms import RegisterForm, LoginForm
 from .models import Person
 from django.contrib.auth.hashers import PBKDF2PasswordHasher
 from django.contrib.auth import authenticate, login, logout
@@ -10,14 +14,16 @@ ProductDao = product.ProductDao()
 
 
 def index(request):
-    
+
+    form = LoginForm()
     subcategories = SubcategoryDao.get_all()
     last_products = ProductDao.get_lasts()
     return render(
         request, 
         'index.html', {
             'subcategories': subcategories,
-            'last_products': last_products
+            'last_products': last_products,
+            'form': form
         })
 
 
@@ -46,6 +52,20 @@ def register(request):
     else:
         form = RegisterForm()
     return render(request, 'auth/register.html', {'form': form})
+
+
+def sign_in(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            user = authenticate(request, username=form.cleaned_data.get("email"), password=form.cleaned_data.get("password"))
+            if user is not None:
+                login(request, user)
+                return redirect("home")
+            else:
+                return render(request, 'index.html', {'login_error': True})
+
+    return redirect("home")
 
 
 def product_details(request, uid):

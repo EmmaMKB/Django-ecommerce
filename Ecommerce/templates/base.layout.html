@@ -11,9 +11,18 @@
     </head>
     <body>
         <section class="w3l-banner-slider-main">
-	<div class="top-header-content">
+            <div class="top-header-content">
 		<header class="tophny-header">
+            {% if login_error %}
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <strong>Erreur de connexion !</strong> L'adresse mail et le mot de passe ne correspondent pas
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+            {% endif %}
 			<div class="container-fluid">
+
 				<div class="top-right-strip row">
 					<div class="top-hny-left-content col-lg-6 pl-lg-0"></div>
 					<ul class="top-hnt-right-content col-lg-6">
@@ -40,16 +49,17 @@
 						<div class="wrap">
 							<h5 class="text-center mb-4">Se connecter</h5>
 							<div class="login-bghny p-md-5 p-4 mx-auto mw-100">
-								<form action="#" method="post">
+								<form action="{% url 'login_action' %}" method="post">
+                                    {% csrf_token %}
 									<div class="form-group">
 										<p class="login-texthny mb-2">Adresse mail</p>
-										<input type="email" class="form-control" id="exampleInputEmail1"
+										<input type="email" name="email" class="form-control" id="exampleInputEmail1"
 											aria-describedby="emailHelp" placeholder="" required="">
 										<small id="emailHelp" class="form-text text-muted">Votre adresse mail reste confidentielle.</small>
 									</div>
 									<div class="form-group">
 										<p class="login-texthny mb-2">Password</p>
-										<input type="password" class="form-control" id="exampleInputPassword1"
+										<input type="password" name="password" class="form-control" id="exampleInputPassword1"
 											placeholder="" required="">
 									</div>
 									<div class="form-check mb-2">

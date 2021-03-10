@@ -1,3 +1,5 @@
+from pprint import pprint
+
 from django import forms
 from .models import Person
 from django.forms import ModelForm
@@ -26,3 +28,16 @@ class RegisterForm(ModelForm):
     class Meta:
         model = Person
         fields = ["first_name", "last_name", "email", "password", "password2", "phone"]
+
+
+class LoginForm(ModelForm):
+
+    password = forms.CharField(widget=forms.PasswordInput)
+    email = forms.CharField(widget=forms.EmailInput)
+
+    def clean(self):
+        pass
+
+    class Meta:
+        model = Person
+        fields = ["email", "password"]
