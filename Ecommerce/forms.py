@@ -1,7 +1,7 @@
-from django.core.exceptions import ValidationError
-from django.forms import ModelForm
 from django import forms
 from .models import Person
+from django.forms import ModelForm
+from django.core.exceptions import ValidationError
 
 
 class RegisterForm(ModelForm):
