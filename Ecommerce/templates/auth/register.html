@@ -21,13 +21,14 @@
             <div class="cont-details">
                 <h3 class="hny-title mb-0">Créer votre <span>compte</span></h3>
                 <p class="mb-5">Remplissez vos informations</p>
-                <form action="">
+                <form method="post">
+                    {% csrf_token %}
                     <div class="row">
                         <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                            <input type="text" required name="name" class="form-control" placeholder="Votre nom">
+                            <input type="text" required name="first_name" class="form-control" placeholder="Votre nom">
                         </div>
                         <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                            <input type="text" required name="firstname" class="form-control" placeholder="Votre prenom">
+                            <input type="text" required name="last_name" class="form-control" placeholder="Votre prenom">
                         </div>
                     </div>
                     <div class="row">
@@ -45,7 +46,23 @@
                         <input type="password" required name="password" class="form-control" placeholder="Mot de passe">
                     </div>
                     <div class="form-group">
-                        <input type="password" required name="passwordconf" class="form-control" placeholder="Confirmer le mot de passe">
+                        <input type="password" required name="password2" class="form-control" placeholder="Confirmer le mot de passe">
+                    </div>
+                    <div>
+                        {% if form.errors %}
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <div class="alert alert-danger">
+                                        <strong>{{ error|escape }}</strong>
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                            {% for error in form.non_field_errors %}
+                                <div class="alert alert-danger">
+                                    <strong>{{ error|escape }}</strong>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
                     </div>
                     <button type="submit" class="btn btn-block">Enregistrer</button>
                 </form>
