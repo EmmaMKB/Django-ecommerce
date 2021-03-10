@@ -1,1 +1,36 @@
 {% extends 'auth.layout.html' %}
+{% load static %}
+{% block header %}
+    <div class="breadcrumb-contentnhy">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <h2 class="hny-title text-center">Produits</h2>
+                <ol class="breadcrumb mb-0">
+                  <p style="color: #ffffff">Découvrez tous nos produits</p>
+                </ol>
+            </nav>
+        </div>
+    </div>
+{% endblock %}
+{% block content %}
+<section class="product-page">
+    <div class="row">
+        <div class="col-lg-4 col-md-4">
+            {% include 'categories/_category.list.html' %}
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+            <div class="row">
+                <div class="col">
+                    <div class="banner">
+                        <img src="{% static 'images/banner5.jpg' %}" class="img-fluid img-responsive" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="product-grid">
+                {% include 'product/_products.grid.html' %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
