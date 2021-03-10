@@ -39,3 +39,22 @@ div.user-info > h1 {
 div.user-info > p {
     color: #c1c1c1;
 }
+
+/*
+----- PRODUCT PAGE
+*/
+
+.product-page {
+    padding: 2em;
+}
+
+.product-page .product-grid {
+    margin-top: -15%;
+}
+
+.subcategories > a > img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right:10px;
+}
